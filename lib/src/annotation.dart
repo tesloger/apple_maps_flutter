@@ -146,6 +146,7 @@ class Annotation {
   const Annotation({
     required this.annotationId,
     this.alpha = 1.0,
+    this.rotation = 0,
     this.anchor = const Offset(0.5, 1.0),
     this.draggable = false,
     this.icon = BitmapDescriptor.defaultAnnotation,
@@ -163,6 +164,8 @@ class Annotation {
   ///
   /// 0.0 means fully transparent, 1.0 means fully opaque.
   final double alpha;
+
+  final int rotation;
 
   /// The icon image point that will be placed at the [position] of the marker.
   ///
@@ -197,6 +200,7 @@ class Annotation {
   /// unless overwritten by the specified parameters.
   Annotation copyWith({
     double? alphaParam,
+    int? rotationParam,
     Offset? anchorParam,
     bool? consumeTapEventsParam,
     bool? draggableParam,
@@ -211,6 +215,7 @@ class Annotation {
       annotationId: annotationId,
       anchor: anchorParam ?? anchor,
       alpha: alphaParam ?? alpha,
+      rotation: rotationParam ?? rotation,
       draggable: draggableParam ?? draggable,
       icon: iconParam ?? icon,
       infoWindow: infoWindowParam ?? infoWindow,
@@ -232,6 +237,7 @@ class Annotation {
 
     addIfPresent('annotationId', annotationId.value);
     addIfPresent('alpha', alpha);
+    addIfPresent('rotation', rotation);
     addIfPresent('anchor', _offsetToJson(anchor));
     addIfPresent('draggable', draggable);
     addIfPresent('icon', icon._toJson());
@@ -254,7 +260,7 @@ class Annotation {
 
   @override
   String toString() {
-    return 'Annotation{annotationId: $annotationId, alpha: $alpha, draggable: $draggable,'
+    return 'Annotation{annotationId: $annotationId, alpha: $alpha, rotation: $rotation, draggable: $draggable,'
         'icon: $icon, infoWindow: $infoWindow, position: $position ,visible: $visible, onTap: $onTap}';
   }
 }

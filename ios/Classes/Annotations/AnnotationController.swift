@@ -44,6 +44,10 @@ extension AppleMapController: AnnotationDelegate {
         }
         annotationView!.canShowCallout = true
         annotationView!.alpha = CGFloat(annotation.alpha ?? 1.00)
+        let rotation = annotation.rotation ?? 0
+        if(rotation != 0) {
+            annotationView!.transform = CGAffineTransform(rotationAngle: CGFloat(Double(rotation) * .pi / 180));
+        }
         annotationView!.isDraggable = annotation.isDraggable ?? false
         return annotationView!
     }
