@@ -49,7 +49,7 @@ class AnnotationIcon: Equatable {
         guard abs(scale - 1) >= 0 else {
             return image
         }
-        return UIImage.init(cgImage: cgImage, scale: 4.0, orientation: image.imageOrientation)
+        return UIImage.init(cgImage: cgImage, scale: 2.0, orientation: image.imageOrientation)
     }
     
     static func == (lhs: AnnotationIcon, rhs: AnnotationIcon) -> Bool {
