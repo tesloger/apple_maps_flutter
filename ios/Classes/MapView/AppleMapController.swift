@@ -36,6 +36,9 @@ public class AppleMapController: NSObject, FlutterPlatformView {
         self.channel = FlutterMethodChannel(name: "apple_maps_plugin.luisthein.de/apple_maps_\(id)", binaryMessenger: registrar.messenger())
         
         self.mapView = FlutterMapView(channel: channel, options: options)
+        if #available(iOS 13.0, *) {
+            self.mapView.overrideUserInterfaceStyle = .light
+         }
         self.registrar = registrar
         
         self.initialCameraPosition = args["initialCameraPosition"]! as! Dictionary<String, Any>
